@@ -1,0 +1,54 @@
+body {
+    font-family: 'inter';
+}
+
+h1 {
+    font-size: 40px;
+}
+
+h2 {
+    font-size: 22px;
+}
+
+.legalInfoMainContainer {
+    overflow: auto;
+    display: flex;
+}
+
+.invisibleSideDiv {
+    display: flex;
+    min-width: 232px !important;
+}
+
+.padd88 {
+    padding: 88px;
+}
+
+.assignBubble {
+    display: flex;
+    padding-left: 6px;
+}
+
+.assignBubble div {
+    border-radius: 100%;
+    background-color: rgba(0, 0, 0, 0.2);
+    width: 35px;
+    height: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    border: 1px solid #ffffff;
+    font-weight: 400;
+    font-size: 12px;
+}
+
+@media only screen and (max-width: 1000px) {
+    .invisibleSideDiv {
+        display: none
+    }
+
+    .padd88 {
+        padding: 90px 10px;
+    }
+}

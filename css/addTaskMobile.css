@@ -1,0 +1,80 @@
+@media only screen and (max-width: 1400px) {
+    .add-task-popup {
+        width: 888px;
+    }
+}
+
+
+
+@media only screen and (max-width: 1000px) {
+
+    .addTaskBtns {
+        display: none !important;
+    }
+
+    .placeHolderDIV {
+        max-height: max-content;
+        min-height: 700px;
+        padding-top: 0px;
+        height: 764px;
+        padding-bottom: 66px;
+    }
+
+    .bg-popup{
+        overflow: auto;
+        top: 80px;
+        background: white;
+        align-items: flex-end;
+    }
+
+    .headline-addTask {
+        width: 100%;
+    }
+
+    .add-task-popup {
+        width: 100%;
+        height: 100vh;
+        border-radius: 0;
+    }
+
+    .leftSection {
+        min-height: 300px !important;
+    }
+
+    .rightSection {
+        height: 0px !important;
+    }
+
+    .invisibleSideDiv {
+        display: flex;
+        height: 0 !important;
+        min-width: 0 !important;
+    }
+}
+
+
+@media only screen and (max-width: 414px) {
+    .placeHolderDIV {
+        max-height: max-content;
+        min-height: 700px;
+        padding-top: 60px;
+        height: 764px;
+        padding-bottom: 0;
+    }
+    .bg-popup {
+        overflow: auto;
+        top: 80px;
+        background: white;
+        align-items: center;
+    }
+
+    .add-task-popup {
+        width: 100%;
+        height: max-content;
+        border-radius: 0;
+    }
+
+    .subtaskCheckboxArea {
+        padding-bottom: 0px !important;
+    }
+}

@@ -1,0 +1,772 @@
+body {
+  font-family: "inter";
+  margin: 0;
+  background-color: whitesmoke;
+}
+
+a {
+  text-decoration: unset;
+  color: #29abe2;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.d-none {
+  display: none !important;
+}
+
+.falseDisclaimer {
+  font-size: 12px;
+  color: red;
+}
+
+.loginMainContainer {
+  display: flex;
+  height: 100vh;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.signUpContainer {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 61%;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.loginContainer {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 68%;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.loginLogoAndSignUp {
+  display: flex;
+  justify-content: space-between;
+}
+
+.signUpLogo {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 75px;
+}
+
+.logoLogin {
+  position: absolute;
+  top: 0;
+  padding: 75px;
+}
+
+.signButtonPosition {
+  display: flex;
+  position: absolute;
+  align-items: center;
+  right: 0;
+  top: 0;
+  padding: 75px;
+}
+
+.loginFormContainer {
+  position: relative;
+  background: white;
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  width: 500px;
+  height: 400px;
+  align-items: center;
+  border: unset;
+  box-shadow: 0px 0px 14px 3px rgba(0, 0, 0, 0.04);
+}
+
+.signUpFormContainer {
+  position: relative;
+  background: #ffffff;
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  width: 500px;
+  height: 400px;
+  align-items: center;
+  border: unset;
+  box-shadow: 0px 0px 14px 3px rgba(0, 0, 0, 0.04);
+}
+
+.loginTextPosi {
+  display: flex;
+  font-size: 50px;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.loginBlueBtn {
+  background: #2a3647;
+  padding: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
+  border: 2px solid #2a3647;
+  border-radius: 6px;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+.loginBlueBtn:hover {
+  transition: none;
+  background-color: #29abe2;
+  border-color: #29abe2;
+  box-shadow: 0px 4px 6px 0px rgba(0, 0, 0, 0.33);
+}
+
+.loginWhiteBtn {
+  background: #ffffff;
+  padding: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
+  border: 2px solid #2a3647;
+  border-radius: 6px;
+  color: #2a3647;
+  cursor: pointer;
+}
+
+.loginWhiteBtn:hover {
+  color: #29abe2;
+  border-color: #29abe2;
+  box-shadow: 0px 4px 6px 0px rgba(0, 0, 0, 0.33);
+}
+
+.blueLine {
+  display: flex;
+  width: 124px;
+  background: #29abe2;
+  height: 2px;
+  border-radius: 10px;
+}
+
+.blueLineContainer {
+  display: flex;
+  width: 100%;
+  padding-top: 10px;
+  padding-bottom: 20px;
+  justify-content: center;
+}
+
+.loginBtnContainer {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+}
+
+.checkboxContainer {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  align-items: center;
+}
+
+.checkbocPosi {
+  display: flex;
+  align-items: center;
+}
+
+.signUpBlueBtn {
+  background: #2a3647;
+  padding: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
+  border: 2px solid #2a3647;
+  border-radius: 6px;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+.signUpBlueBtn:hover {
+  transition: none;
+  border-color: #29abe2;
+  background-color: #29abe2;
+  box-shadow: 0px 4px 6px 0px rgba(0, 0, 0, 0.33);
+}
+
+.signUpTextPosi {
+  display: flex;
+  font-size: 50px;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.backIconContainer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 22px;
+}
+
+.logoSize {
+  display: flex;
+  height: 100px;
+  width: 83px;
+}
+
+
+
+.forgotPasswordFormContainer {
+  position: relative;
+  background: white;
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  width: 826px;
+  height: 462px;
+  align-items: center;
+  border: unset;
+  box-shadow: 0px 0px 14px 3px rgba(0, 0, 0, 0.04);
+}
+
+.fargotPasswordContainer {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+.fargotPasswordField {
+  border: none;
+  height: 100%;
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.fargotPasswordTextPosi {
+  display: flex;
+  font-size: 50px;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.fargotPasswordSubText {
+  width: 656px;
+  font-size: 21px;
+  text-align: center;
+}
+
+.forgotBtn {
+  width: max-content;
+  padding-left: 30px !important;
+  padding-right: 30px !important;
+}
+
+.forgotBtn:hover {
+  background-color: #29abe2;
+  box-shadow: 0px 4px 6px 0px rgba(0, 0, 0, 0.33);
+}
+
+.notUserTextPosi {
+  display: flex;
+  padding-right: 40px;
+}
+
+.warningPassword {
+  display: flex;
+  width: 123%;
+  color: red;
+  font-size: 12px;
+  margin-top: -20px;
+}
+
+.warningResetPassword {
+  display: flex;
+  width: 416px;
+  color: red;
+  font-size: 12px;
+  margin-top: -20px;
+}
+
+.showPassword {
+  position: absolute;
+  right: 17px;
+  top: 10px;
+  opacity: 0;
+  height: 24px;
+  width: 19px !important;
+}
+
+.passwordChangePopup {
+  position: absolute;
+  display: flex;
+  height: 100%;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+  background: #3079b952;
+}
+
+.sendEmailPopup {
+  position: absolute;
+  display: flex;
+  height: 100%;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+  background: #3079b952;
+}
+
+.passwordChangePopupIMG {
+  height: 55px;
+}
+
+.sendEmailPopupIMG {
+  height: 55px;
+}
+
+.relative {
+  position: relative;
+}
+
+input {
+  outline: none;
+  box-sizing: border-box;
+  display: flex;
+  padding: 13px 21px;
+  width: 422px;
+  height: auto;
+  background: #ffffff;
+  border: 1px solid #d1d1d1b6;
+  border-radius: 10px;
+  flex: none;
+  cursor: pointer;
+}
+
+input[type="checkbox"] {
+  appearance: checkbox;
+  display: inline-block;
+  width: auto;
+  height: auto;
+}
+
+input[type="submit"] {
+  background-color: #2a3647;
+  border: none;
+  color: #fff;
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
+}
+
+.inputEmail {
+  background-image: url(../assets/img/email.svg);
+  background-repeat: no-repeat;
+  background-position: right;
+  background-position-x: 95%;
+}
+
+input[type="password"] {
+  background-image: url(../assets/img/password.svg);
+  background-repeat: no-repeat;
+  background-position: right;
+  background-position-x: 95%;
+}
+
+input[type="text"] {
+  background-image: url(../assets/img/dontShow.png) !important;
+  background-repeat: no-repeat;
+  background-position: right;
+  background-position-x: 95%;
+  background-size: 20px;
+}
+
+.inputText {
+  background-image: url(../assets/img/user.svg);
+  background-repeat: no-repeat;
+  background-position: right;
+  background-position-x: 95%;
+}
+
+.falseInput {
+  border-color: #ff0000;
+}
+
+.rightInput {
+  background-color: #e8f0fe;
+}
+
+.logoEntrance {
+  background: whitesmoke;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  position: absolute;
+  z-index: 99;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.logoEntrance svg {
+  display: flex;
+  justify-content: center;
+  height: 334px;
+  width: 274px;
+}
+
+.slide-out-tl {
+  animation: slide-out-tl 2s;
+}
+
+.transparentDiv {
+  height: 1px;
+}
+
+.requiredText {
+  font-size: 10px;
+  color: red;
+  padding: 2px;
+}
+
+@keyframes slide-out-tl {
+  0% {
+    position: absolute;
+    top: calc(50% - (334px / 2));
+    left: calc(50% - (274px / 2));
+  }
+
+  95% {
+    position: absolute;
+    top: 75px;
+    left: 75px;
+    height: 100px;
+    width: 83px;
+  }
+
+  100% {
+    position: absolute;
+    top: 75px;
+    left: 75px;
+    height: 100px;
+    width: 83px;
+    display: none;
+  }
+}
+
+.title-bg-hide {
+  animation: title-bg-hide 2s;
+}
+
+a:hover .backColorMobile {
+  fill: black !important;
+}
+
+@keyframes title-bg-hide {
+  0% {
+    /* opacity: 1; */
+
+  }
+
+  100% {
+    /* opacity: 0; */
+    background-color: rgba(245, 245, 245, 0);
+
+  }
+}
+
+.disclaimerEntrance {
+  z-index: 99;
+  padding: 50px 240px 0px 240px;
+}
+
+
+.disclaimerBtnContainer {
+  display: flex;
+  justify-content: space-evenly;
+  padding: 20px 0;
+
+}
+
+
+@keyframes slide-in-bottom {
+  0% {
+    transform: translateY(1000px);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.slide-in-bottom {
+  animation: slide-in-bottom 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+
+@media (max-width: 860px) {
+  .disclaimerEntrance {
+    z-index: 99;
+    padding: 0 10px;
+    margin-bottom: -124px;
+  }
+
+  .backColorMobile {
+    fill: black !important;
+  }
+
+  .forgotPasswordFormContainer {
+    width: 370px;
+    height: 500px;
+  }
+
+  input {
+    width: 326px;
+  }
+
+  .fargotPasswordTextPosi {
+    font-size: 30px;
+
+  }
+
+  .fargotPasswordSubText {
+    width: unset;
+    font-size: 17px;
+    text-align: center;
+  }
+
+  .forgotBtn {
+    height: 50px;
+  }
+
+  .warningResetPassword {
+    width: max-content;
+  }
+}
+
+@media (max-width: 640px) {
+  .signUpLogo {
+    padding: 24px;
+  }
+
+  .signUpBlueBtn {
+    height: 50px;
+    width: 180px;
+    font-size: 16px;
+  }
+
+  .signUpTextPosi {
+    font-size: 46px;
+  }
+
+  .signUpFormContainer {
+    width: 380px;
+    height: 500px;
+  }
+
+  .signButtonPosition {
+    top: unset;
+    bottom: 0;
+    padding: 24px;
+  }
+
+  a {
+    font-size: 12px;
+  }
+
+  .loginFormContainer {
+    width: 372px;
+    height: 560px;
+  }
+
+  input {
+    width: 300px;
+  }
+
+  .logoSize {
+    height: 78px;
+    width: 64px;
+  }
+
+  .logoLogin {
+    padding: 25px;
+  }
+
+  .loginBtnContainer {
+    width: 180px;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .loginContainer {
+    width: 80%;
+  }
+
+  .loginWhiteBtn {
+    height: 50px;
+  }
+
+  .loginBlueBtn {
+    height: 50px;
+  }
+
+  .checkboxContainer {
+    align-items: flex-start;
+    flex-direction: column-reverse;
+    gap: 24px;
+  }
+
+  .loginTextPosi {
+    font-size: 47px;
+    align-items: center;
+  }
+
+  .blueLineContainer {
+    display: flex;
+    width: 50%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    justify-content: center;
+  }
+
+  .warningResetPassword {
+    max-width: auto;
+  }
+
+  .logoSize {
+    height: 55px;
+    width: 45px;
+  }
+
+  .logoEntrance {
+    background: #2a3647;
+
+  }
+
+  @keyframes slide-out-tl {
+    0% {
+      position: absolute;
+      top: calc(50% - (334px / 2));
+      left: calc(50% - (274px / 2));
+    }
+
+
+    95% {
+      position: absolute;
+      top: 25px;
+      left: 25px;
+      height: 55px;
+      width: 45px;
+    }
+
+    100% {
+      position: absolute;
+      top: 25px;
+      left: 25px;
+      height: 55px;
+      width: 45px;
+      /* background: white; */
+      display: none;
+    }
+  }
+
+
+
+  .logoSVGPath {
+    animation: animSVGColor 2s;
+  }
+
+  @keyframes animSVGColor {
+    0% {
+      fill: white;
+    }
+
+    100% {
+      fill: #2a3647;
+    }
+  }
+}
+
+
+@media (max-width: 420px) {
+  .forgotPasswordFormContainer {
+    width: 280px;
+    height: 384px;
+  }
+
+  .warningResetPassword {
+    margin-top: -10px;
+    max-width: 208px;
+  }
+
+  .fargotPasswordTextPosi {
+    padding-top: 36px;
+    font-size: 24px;
+    text-align: center;
+  }
+
+  .signUpBlueBtn {
+    height: 42px;
+    width: 140px;
+    font-size: 15px;
+  }
+
+  .signUpTextPosi {
+    font-size: 36px;
+  }
+
+  .signUpFormContainer {
+    width: 280px;
+    height: 400px;
+  }
+
+  .loginFormContainer {
+    width: 260px;
+    height: 400px;
+  }
+
+  input {
+    height: 40px;
+    width: 208px;
+  }
+
+  .loginTextPosi {
+    font-size: 37px;
+
+  }
+
+  .loginBtnContainer {
+    width: 130px;
+    gap: 12px;
+  }
+
+
+  .loginWhiteBtn {
+    height: 40px;
+  }
+
+  .loginBlueBtn {
+    height: 40px;
+  }
+
+  .checkboxContainer {
+    gap: 16px;
+  }
+
+  .checkbocPosi {
+    font-size: 14px;
+    gap: 4px;
+    margin-left: -4px;
+  }
+}

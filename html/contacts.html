@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Join/Contacts</title>
+    <link rel="icon" type="image/svg" href="../assets/img/join_logo.svg">
+    <link rel="stylesheet" href="../css/contacts.css">
+    <link rel="stylesheet" href="../css/addTaskMobile.css">
+    <link rel="stylesheet" href="../css/header_sidebar.css">
+    <link rel="stylesheet" href="../css/addTask.css">
+    <link rel="stylesheet" href="../fonts.css">
+    <script src="../js/mini_backend.js"></script>
+    <script src="../script.js"></script>
+    <script src="../js/templates.js"></script>
+    <script src="../js/contacts.js"></script>
+    <script src="../js/addTask.js"></script>
+    <script src="../js/addTaskMore.js"></script>
+    <script src="../js/login.js"></script>
+    <script src="../js/board.js"></script>
+    <script src="../js/summary.js"></script>
+    <script src="../js/header_sidebar.js"></script>
+</head>
+
+<body id="body" onload="initContacts()">
+    <div id="header"></div>
+    <div id="sidebar"></div>
+    <div class="invisibleHeadDiv"></div>
+    <div class="contactsMainContainerCO">
+        <div class="invisibleSideDiv"></div>
+        <div class="contactsContainer" id="contactsArea"></div>
+        <div id="rightSectionCO" class="rightSectionCO">
+            <div id="textPosiRE" class="textPosiRE d-none">
+                <p>Kanban Project Management Tool</p>
+                <div class="teamTextContainerRE">
+                    <h1 class="teamText">Contacts</h1>
+                    <img class="cursorPointer" onclick="backToContacts()" src="../assets/img/backBlack.svg">
+                </div>
+                <p> Better with a team </p>
+                <div class="lineBlue"></div>
+            </div>
+            <div id="textPosi" class="textPosi">
+                <div>
+                    <h1 class="contactsTitle">Contacts</h1>
+                </div>
+                <div class="lineBlue"></div>
+                <div class="contactsSubTitle">
+                    Better with a team
+                </div>
+            </div>
+            <div class="slideContactMainContainer">
+                <div id="slideContainer" class="slideContactContainer slide-in d-none">
+                    <div class="contactSlideName">
+                        <div id="slideContactsBubble"></div>
+                        <div class="contactNameTask">
+                            <div id="slideName"></div>
+                            <div id="contactsAddTask"></div>
+                        </div>
+                    </div>
+                    <div class="slideContactInfoContainer">
+                        <div class="contactName">Contact Information</div>
+                        <div id="slideEditContact"></div>
+                    </div>
+                    <div class="slideEmailPhoneInfo">
+                        <div>
+                            <b>Email</b>
+                        </div>
+                        <div id="slideEmail"></div>
+                    </div>
+                    <div class="slideEmailPhoneInfo">
+                        <div>
+                            <b>Phone</b>
+                        </div>
+                        <div id="slidePhone"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="btnPosi">
+            <button onclick="openAddNewContact()" class="btnNewContact">
+                <b>New contact</b>
+                <img src="../assets/img/newContact.svg">
+            </button>
+        </div>
+    </div>
+    <div id="editContactPopup" class="d-none popupContactMainContainer" onclick="closeEditContact()">
+        <div onclick="event.stopPropagation()" class="popupContactContainer" id="editContact">
+            <div class="popupContactBlueSection">
+                <img src="../assets/img/logoWhite.svg" class="logoWhiteSVG">
+                <h1 class="editContactText">Edit contact
+                    <div class="blueLineBottom"></div>
+                </h1>
+            </div>
+            <div class="popupContactWhiteSection">
+                <div class="closePopupContact">
+                    <svg onclick="closeEditContact()" width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg" class="cursorPointer">
+                        <path class="backSVG" d="M12.5011 12.5001L17.7441 17.7431M7.25806 17.7431L12.5011 12.5001L7.25806 17.7431ZM17.7441 7.25708L12.5001 12.5001L17.7441 7.25708ZM12.5001 12.5001L7.25806 7.25708L12.5001 12.5001Z" stroke="#2A3647" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                <div class="inputSection">
+                    <div class="contactImgBubbleContainer" id="bubbleInEditSection">
+                        <img class="imgUserWhiteSize" src="../assets/img/userWhite.svg">
+                    </div>
+                    <form onsubmit="saveEdit(event)">
+                        <div class="inputsContainerEditSection">
+                            <div class="editContactInputPosi">
+                                <input maxlength="25" id="editName" oninput="proofEditName()" class="inputCO nameIcon" placeholder="Edit name" type="text">
+                                <div class="transparentDiv d-none" id="falseEditName">
+                                  <div class="requiredText">input need First and last name</div>
+                                </div>
+                            </div>
+                            <div class="editContactInputPosi">
+                                <input maxlength="30" id="editEmail" oninput="proofEditEmail()" class="inputCO emailIcon" placeholder="Edit email" type="email">
+                                <div class="transparentDiv d-none" id="falseEditEmail">
+                                  <div class="requiredText">false email input</div>
+                                </div>
+                            </div>
+                            <div class="editContactInputPosi">
+                                <input id="editPhone" oninput="proofPhone('editPhone')" maxlength="20" minlength="5" class="inputCO phoneIcon" placeholder="Edit number">
+                                <div class="transparentDiv d-none" id="falseEditPhone">
+                                  <div class="requiredText">required input</div>
+                                </div>
+                            </div>
+                            <div class="saveContactBtnContainer">
+                                <button class="saveContactBlueBtn">
+                                    <b>Save</b>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="addContactPopup" class="d-none popupContactMainContainer" onclick="closeAddNewContact()">
+        <div onclick="event.stopPropagation()" class="popupContactContainer" id="addContact">
+            <div class="popupContactBlueSection">
+                <img src="../assets/img/logoWhite.svg">
+                <div>   
+                    <h1 class="addContactTitle">Add contact</h1>
+                    <span class="addContactSubtitle">Tasks are better with a team!</span>
+                    <div class="blueLineBottom"></div>
+                </div>
+            </div>
+            <div class="popupContactWhiteSection">
+                <div class="closePopupContact">
+                    <svg onclick="closeAddNewContact()" width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg" class="cursorPointer">
+                        <path class="backSVG" d="M12.5011 12.5001L17.7441 17.7431M7.25806 17.7431L12.5011 12.5001L7.25806 17.7431ZM17.7441 7.25708L12.5001 12.5001L17.7441 7.25708ZM12.5001 12.5001L7.25806 7.25708L12.5001 12.5001Z" stroke="#2A3647" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                </div>
+                <div class="inputSection">
+                    <div class="contactImgBubbleContainer">
+                        <img class="imgUserWhiteSize" src="../assets/img/userWhite.svg">
+                    </div>
+                    <form onsubmit="createNewContact(event)">
+                        <div class="inputsContainer">
+                            <div class="editContactInputPosi">
+                            <input maxlength="18" id="name" oninput="proofName()" class="inputCO nameIcon" placeholder="Name" type="text" required>
+                                    <div class="transparentDiv d-none" id="falseName">
+                                      <div class="requiredText">input need First and last name</div>
+                                    </div>
+                                </div>
+                            <div class="editContactInputPosi">
+                            <input maxlength="20" id="email" oninput="proofEmail()" class="inputCO emailIcon" placeholder="Email" type="email" required>
+                                <div class="transparentDiv d-none" id="falseEmail">
+                                  <div class="requiredText">false email input</div>
+                                </div>
+                            </div>
+                            <input id="phone" oninput="proofPhone('phone')" class="inputCO phoneIcon editContactInputPosi" placeholder="number" type="number" required>
+                            <p id="phoneError" class="phoneError"></p>
+                            <div class="addContactBtnContainer">
+                                <div onclick="clearContactsInputs()" class="cancelContactWhiteBtn">
+                                    Cancel
+                                    <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path class="clearSvg" d="M12.5011 12.5001L17.7441 17.7431M7.25806 17.7431L12.5011 12.5001L7.25806 17.7431ZM17.7441 7.25708L12.5001 12.5001L17.7441 7.25708ZM12.5001 12.5001L7.25806 7.25708L12.5001 12.5001Z" stroke="#2A3647" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                    </svg>
+                                </div>
+                                <button class="createContactBlueBtn">
+                                    <b>Create contact</b>
+                                    <img src="../assets/img/check.svg">
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="createContactPopup" class="createdContactPopupPosi d-none">
+        <p class="addTaskPopup slidePopup">Contact succesfully created</p>
+    </div>
+    <section onclick="closeAddTaskBoard(), clearTask()" id="popup-add-task-board" class="bg-popup d-none">
+        <div onclick="event.stopPropagation()" id="addTask" class="add-task-popup"></div>
+    </section>
+    <div id="navbar-bottom"></div>
+</body>
+
+</html>

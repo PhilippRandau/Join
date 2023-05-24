@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Join/Board</title>
+    <link rel="icon" type="image/svg" href="../assets/img/join_logo.svg">
+    <link rel="stylesheet" href="../css/board.css">
+    <link rel="stylesheet" href="../fonts.css">
+    <link rel="stylesheet" href="../css/header_sidebar.css">
+    <link rel="stylesheet" href="../css/addTask.css">
+    <link rel="stylesheet" href="../css/addTaskMobile.css">
+
+    
+    
+
+    <script src="../js/mini_backend.js"></script>
+    <script src="../js/templates.js"></script>
+    <script src="../js/header_sidebar.js"></script>
+
+    <script src="../js/login.js"></script>
+    <script src="../script.js"></script>
+    <script src="../js/addTask.js"></script>
+    <script src="../js/addTaskMore.js"></script>
+    <script src="../js/board.js"></script>
+
+</head>
+
+<body id="body" onload="initBoard()">
+    <div id="header"></div>
+    <div id="sidebar"></div>
+
+    <!-- Add new task -->
+    <section onclick="closeAddTaskBoard()" id="popup-add-task-board" class="bg-popup d-none">
+        <div onclick="event.stopPropagation()" id="addTask" class="add-task-popup"></div>
+    </section>
+    <!-- Open selected task details -->
+    <section onclick="closeTaskDetails()" id="popup-task-details" class="bg-popup d-none">
+        <div onclick="event.stopPropagation()" id="task-details" class="task-details-popup"></div>
+    </section>
+
+    <section class="board">
+        <h3 class="only-mobile">Kanban Project Management Tool</h3>
+        <div class="headline">
+            <h1>Board</h1>
+            <div class="find-add-task">
+                <div class="find-task">
+                    <input id="find-task" title="You can search by title, description and category." type="search"
+                        placeholder="Find Task" onkeydown="renderBoard()" onkeyup="renderBoard()"
+                        onsearch="renderBoard()">
+                    <div class="parting-line"></div>
+                </div>
+                <button onclick="addTaskBoard('todo')" class="add-task" title="Click to add a new task">
+                    <span class="mobile-d-none">Add task</span>
+                    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M9.00113 9.00017L9.00178 16.4149M1.58641 9.00082L9.00113 9.00017L1.58641 9.00082ZM16.4159 8.99953L9.00043 8.99946L16.4159 8.99953ZM9.00043 8.99946L9.00049 1.58545L9.00043 8.99946Z"
+                            stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+
+        <div class="board-tasks-section">
+            <div class="responsive-duo">
+                <div class="tasks-sections">
+                    <div class="tasks-sections-headline" onclick="addTaskBoard('todo')"
+                        title="Click to add a new task.">
+                        <span>To do</span>
+                        <div class="button-add-task">
+                            <svg width="30" height="30" viewBox="0 0 30 30" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path class="symbol-color" d="M15 7.5V22.5" stroke="#2A3647" stroke-width="2"
+                                    stroke-linecap="round" />
+                                <path class="symbol-color" d="M22.5 15.1416L7.5 15.1416" stroke="#2A3647"
+                                    stroke-width="2" stroke-linecap="round" />
+                                <rect class="symbol-color" x="1" y="1" width="28" height="28" rx="9" stroke="#2A3647"
+                                    stroke-width="2" />
+                            </svg>
+                        </div>
+                    </div>
+                    
+                    <div class="task-columns" id="tasks-to-do" ondrop="moveTo()" ondragleave="disregardArea()"
+                        ondragover="allowDrop(event, 'todo', 'tasks-to-do')">
+
+                    </div>
+                </div>
+                <div class="tasks-sections">
+                    <div class="tasks-sections-headline" onclick="addTaskBoard('inProgress')"
+                        title="Click to add a new task.">
+                        <span>In progress</span>
+                        <div class="button-add-task">
+                            <svg width="30" height="30" viewBox="0 0 30 30" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path class="symbol-color" d="M15 7.5V22.5" stroke="#2A3647" stroke-width="2"
+                                    stroke-linecap="round" />
+                                <path class="symbol-color" d="M22.5 15.1416L7.5 15.1416" stroke="#2A3647"
+                                    stroke-width="2" stroke-linecap="round" />
+                                <rect class="symbol-color" x="1" y="1" width="28" height="28" rx="9" stroke="#2A3647"
+                                    stroke-width="2" />
+                            </svg>
+                        </div>
+
+                    </div>
+
+                    <div class="task-columns" id="tasks-in-progress" ondrop="moveTo()" ondragleave="disregardArea()"
+                        ondragover="allowDrop(event, 'inProgress', 'tasks-in-progress')">
+
+                    </div>
+                </div>
+            </div>
+            <div class="responsive-duo">
+                <div class="tasks-sections">
+                    <div class="tasks-sections-headline" onclick="addTaskBoard('awaitingFeedback')"
+                        title="Click to add a new task.">
+                        <span>Awaiting Feedback</span>
+                        <div class="button-add-task">
+                            <svg width="30" height="30" viewBox="0 0 30 30" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path class="symbol-color" d="M15 7.5V22.5" stroke="#2A3647" stroke-width="2"
+                                    stroke-linecap="round" />
+                                <path class="symbol-color" d="M22.5 15.1416L7.5 15.1416" stroke="#2A3647"
+                                    stroke-width="2" stroke-linecap="round" />
+                                <rect class="symbol-color" x="1" y="1" width="28" height="28" rx="9" stroke="#2A3647"
+                                    stroke-width="2" />
+                            </svg>
+                        </div>
+
+                    </div>
+                    <div class="task-columns" id="tasks-awaiting-feedback" ondrop="moveTo()"
+                        ondragleave="disregardArea()"
+                        ondragover="allowDrop(event, 'awaitingFeedback', 'tasks-awaiting-feedback')">
+
+                    </div>
+                </div>
+                <div class="tasks-sections">
+                    <div class="tasks-sections-headline" onclick="addTaskBoard('done')"
+                        title="Click to add a new task.">
+                        <span>Done</span>
+                        <div class="button-add-task">
+                            <svg width="30" height="30" viewBox="0 0 30 30" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path class="symbol-color" d="M15 7.5V22.5" stroke="#2A3647" stroke-width="2"
+                                    stroke-linecap="round" />
+                                <path class="symbol-color" d="M22.5 15.1416L7.5 15.1416" stroke="#2A3647"
+                                    stroke-width="2" stroke-linecap="round" />
+                                <rect class="symbol-color" x="1" y="1" width="28" height="28" rx="9" stroke="#2A3647"
+                                    stroke-width="2" />
+                            </svg>
+                        </div>
+
+                    </div>
+                    <div class="task-columns" id="tasks-done" ondrop="moveTo()" ondragleave="disregardArea()"
+                        ondragover="allowDrop(event, 'done', 'tasks-done')">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <div class="navbar-height" id="navbar-bottom"></div>
+</body>
+</html>
