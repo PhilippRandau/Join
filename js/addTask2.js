@@ -384,7 +384,6 @@ function filterRenderBubble(assignedData) {
       checked = false;
     }
   }
-
 }
 
 
@@ -447,107 +446,4 @@ function renderSelectContact(contactInitialsID) {
     let initialLetters = selectedContacts[i].initial;
     contactInitials.innerHTML += renderSelectContactHTML(color, initialLetters);
   }
-}
-
-
-
-/**
- * Clears the current task and resets all input fields.
- */
-function clearTask() {
-  clearPrio();
-  newCategory();
-  closeNewCategory();
-  closeNewSubtask();
-  acceptNewSubtask();
-  clearDataAndInputs();
-  let bubbles = document.getElementById('contactInitials')
-  bubbles.innerHTML = ""
-  if (slideCategory == true) {
-    openCategory();
-  }
-  if (slideAssignTo == true) {
-    contactDiv.click();
-  }
-}
-
-
-/**
- * Resets all input fields and current array.
- */
-function clearDataAndInputs() {
-  let titleInput = document.getElementById("title");
-  let descriptionInput = document.getElementById("description");
-  let categoryInput = document.getElementById("createCategory");
-  let dateInput = document.getElementById("date");
-  newSubtask = [];
-  newCreateSubtask = [];
-  selectedContacts = [];
-  titleInput.value = "";
-  descriptionInput.value = "";
-  categoryInput.value = "";
-  dateInput.value = "";
-}
-
-
-/**
- * Resets the priority by resetting the corresponding buttons and texts.
- */
-function clearPrio() {
-  let urgentBtn = document.getElementById("urgentBtn");
-  let mediumBtn = document.getElementById("mediumBtn");
-  let lowBtn = document.getElementById("lowBtn");
-  urgentBtn.checked = false;
-  mediumBtn.checked = false;
-  lowBtn.checked = false;
-  clearPrioText();
-  clearPrioBtnWhite();
-  clearPrioSVG();
-}
-
-
-/**
- * Resets the priority texts.
- */
-function clearPrioText() {
-  let lowPrioText = document.getElementById("lowPrioText");
-  let normalPrioText = document.getElementById("normalPrioText");
-  let highPrioText = document.getElementById("highPrioText");
-  lowPrioText.style = "color: black;";
-  normalPrioText.style = "color: black;";
-  highPrioText.style = "color: black;";
-}
-
-
-/**
- * Resets the color of the priority buttons.
- */
-function clearPrioBtnWhite() {
-  let highBtnContainer = document.getElementById("highBtnContainer");
-  let normalBtnContainer = document.getElementById("normalBtnContainer");
-  let lowContainer = document.getElementById("lowBtnContainer");
-  lowContainer.classList.remove("prioLowContainerOnClick");
-  highBtnContainer.classList.remove("prioHighContainerOnClick");
-  normalBtnContainer.classList.remove("prioNormalContainerOnClick");
-}
-
-
-/**
- * Resets the color of the priority symbols.
- */
-function clearPrioSVG() {
-  let svgLowColor = document.getElementById("svgLow");
-  let svgNormalColor = document.getElementById("svgNormal");
-  let svgHighColor = document.getElementById("svgHigh");
-  svgLowColor.classList.remove("prioIconWhite");
-  svgNormalColor.classList.remove("prioIconWhite");
-  svgHighColor.classList.remove("prioIconWhite");
-}
-
-
-/**
- * Opens the form to add a task.
- */
-function openAddTask() {
-  document.getElementById("addTask").innerHTML = addTaskHTML();
 }

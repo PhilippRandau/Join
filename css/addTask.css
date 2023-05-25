@@ -604,21 +604,21 @@ textarea {
   border: 2px solid white;
 }
 
-.prioLowContainerOnClick {
+.priolowContainerOnClick {
   background: #7ae229;
   width: 138px;
   height: 48px;
   box-shadow: 0px 4px 6px 0px rgba(0, 0, 0, 0.33);
 }
 
-.prioNormalContainerOnClick {
+.priomediumContainerOnClick {
   background: #ffa800;
   width: 138px;
   height: 48px;
   box-shadow: 0px 4px 6px 0px rgba(0, 0, 0, 0.33);
 }
 
-.prioHighContainerOnClick {
+.priourgentContainerOnClick {
   background: #ff3d00;
   width: 138px;
   height: 48px;
