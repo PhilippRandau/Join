@@ -14,14 +14,10 @@ function renderBoard() {
     areaInProgressID.innerHTML = "";
     areaAwaitingFeedbackID.innerHTML = "";
     areaDoneID.innerHTML = "";
-    try {
-        filterAndSearch("todo", areaToDoID);
-        filterAndSearch("inProgress", areaInProgressID);
-        filterAndSearch("awaitingFeedback", areaAwaitingFeedbackID);
-        filterAndSearch("done", areaDoneID);
-    } catch (error) {
-        // console.log('no Tasks created');
-    }
+    filterAndSearch("todo", areaToDoID);
+    filterAndSearch("inProgress", areaInProgressID);
+    filterAndSearch("awaitingFeedback", areaAwaitingFeedbackID);
+    filterAndSearch("done", areaDoneID);
 }
 
 

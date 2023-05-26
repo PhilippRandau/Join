@@ -13,7 +13,6 @@ function setLoginEmail() {
     if (emailFound && emailRegex.test(email)) {
       return email;
     } else {
-      // console.log("invalid email");
       return;
     }
   }

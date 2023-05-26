@@ -24,7 +24,6 @@ window.onload = async function() {
 async function downloadFromServer() {
     let result = await loadJSONFromServer();
     jsonFromServer = JSON.parse(result);
-    // console.log('Loaded', result);
 }
 
 function setURL(url) {
@@ -47,10 +46,7 @@ function loadJSONFromServerOld() {
         let xhttp = new XMLHttpRequest();
         let proxy = determineProxySettings();
         let serverURL = proxy + BASE_SERVER_URL + '/nocors.php?json=database&noache=' + (new Date().getTime());
-
-
-
-
+        
         xhttp.open('GET', serverURL);
 
         xhttp.onreadystatechange = function(oEvent) {

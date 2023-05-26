@@ -238,7 +238,6 @@ async function addUser() {
   if (newEmail && proofName() === true && proofDisclaimer() == true) {
     await setNewUser(newName, newColor, newEmail, newPassword, newInitialLetters);
   } else {
-    console.log();
     ("Überprüfe deine Angaben");
   }
 }
@@ -391,7 +390,6 @@ function setLoginPassword() {
  */
 function setCurrentUser(user) {
   currentUser.push(user);
-  // console.log("user gefunden:", user);
   let userJSON = JSON.stringify(user);
   localStorage.setItem("currentUser", userJSON);
 }

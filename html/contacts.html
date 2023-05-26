@@ -15,6 +15,7 @@
     <script src="../js/mini_backend.js"></script>
     <script src="../script.js"></script>
     <script src="../js/templates.js"></script>
+    <script src="../js/templates2.js"></script>
     <script src="../js/contacts.js"></script>
     <script src="../js/contacts2.js"></script>
     <script src="../js/addTask.js"></script>
@@ -89,7 +90,7 @@
             </button>
         </div>
     </div>
-    <div id="editContactPopup" class="d-none popupContactMainContainer" onclick="closeEditContact()">
+    <div id="editContactPopup" class="d-none popupContactMainContainer" onclick="closeAddEditContact('editContact', 'editContactPopup');">
         <div onclick="event.stopPropagation()" class="popupContactContainer" id="editContact">
             <div class="popupContactBlueSection">
                 <img src="../assets/img/logoWhite.svg" class="logoWhiteSVG">
@@ -99,7 +100,7 @@
             </div>
             <div class="popupContactWhiteSection">
                 <div class="closePopupContact">
-                    <svg onclick="closeEditContact()" width="25" height="25" viewBox="0 0 25 25" fill="none"
+                    <svg onclick="closeAddEditContact('editContact', 'editContactPopup');" width="25" height="25" viewBox="0 0 25 25" fill="none"
                         xmlns="http://www.w3.org/2000/svg" class="cursorPointer">
                         <path class="backSVG"
                             d="M12.5011 12.5001L17.7441 17.7431M7.25806 17.7431L12.5011 12.5001L7.25806 17.7431ZM17.7441 7.25708L12.5001 12.5001L17.7441 7.25708ZM12.5001 12.5001L7.25806 7.25708L12.5001 12.5001Z"
@@ -148,7 +149,7 @@
             </div>
         </div>
     </div>
-    <div id="addContactPopup" class="d-none popupContactMainContainer" onclick="closeAddNewContact()">
+    <div id="addContactPopup" class="d-none popupContactMainContainer" onclick="closeAddEditContact('addContact', 'addContactPopup');">
         <div onclick="event.stopPropagation()" class="popupContactContainer" id="addContact">
             <div class="popupContactBlueSection">
                 <img src="../assets/img/logoWhite.svg">
@@ -160,7 +161,7 @@
             </div>
             <div class="popupContactWhiteSection">
                 <div class="closePopupContact">
-                    <svg onclick="closeAddNewContact()" width="25" height="25" viewBox="0 0 25 25" fill="none"
+                    <svg onclick="closeAddEditContact('addContact', 'addContactPopup');" width="25" height="25" viewBox="0 0 25 25" fill="none"
                         xmlns="http://www.w3.org/2000/svg" class="cursorPointer">
                         <path class="backSVG"
                             d="M12.5011 12.5001L17.7441 17.7431M7.25806 17.7431L12.5011 12.5001L7.25806 17.7431ZM17.7441 7.25708L12.5001 12.5001L17.7441 7.25708ZM12.5001 12.5001L7.25806 7.25708L12.5001 12.5001Z"

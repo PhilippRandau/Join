@@ -60,12 +60,11 @@ function loadTasksLength() {
     countTimeout = 0;
   }
   setTimeout(function () {
-
-    loadTasksInBoard();
-    loadTasksInProgress();
-    loadTasksAwaitingFeedback();
-    loadTasksTodo();
-    loadTasksDone();
+    loadTasksInSummary('', 'tasks-in-board');
+    loadTasksInSummary('inProgress', 'tasks-in-progress');
+    loadTasksInSummary('awaitingFeedback', 'tasks-awaiting-feedback');
+    loadTasksInSummary('todo', 'tasks-todo');
+    loadTasksInSummary('done', 'tasks-done');
   }, countTimeout);
 }
 
@@ -98,61 +97,19 @@ function countTo(num, taskNumID) {
 /**
  * This function is used to check the length of all tasks from the board and call the function countTo.
  */
-function loadTasksInBoard() {
-  try {
-    countTo(allTasks.length - 1, 'tasks-in-board');
-  } catch (error) {
-    // console.log('no tasks');
+function loadTasksInSummary(area, tasksInArea) {
+  let tasks;
+  if (tasksInArea != 'tasks-in-board') {
+    tasks = allTasks.filter((t) => t["area"] == area);
+  }else{
+    tasks = allTasks.filter(t => t.hasOwnProperty("area"));
+  }
+  
+  if (tasks.length) {
+    countTo(tasks.length, tasksInArea);
   }
 }
 
-/**
- * This function is used to filter the length of 'allTasks' in the 'inProgress' area and call the function countTo.
- */
-function loadTasksInProgress() {
-  try {
-    let inProgress = allTasks.filter((t) => t["area"] == "inProgress");
-    countTo(inProgress.length, 'tasks-in-progress');
-  } catch (error) {
-    // console.log('no tasks in "inProgress"');
-  }
-}
-
-/**
- * This function is used to filter the length of 'allTasks' in the 'awaitingFeedback' area and call the function countTo.
- */
-function loadTasksAwaitingFeedback() {
-  try {
-    let awaitingFeedback = allTasks.filter((t) => t["area"] == "awaitingFeedback");
-    countTo(awaitingFeedback.length, 'tasks-awaiting-feedback');
-  } catch (error) {
-    // console.log('no tasks in "awaitingFeedback"');
-  }
-}
-
-/**
- * This function is used to filter the length of 'allTasks' in the 'todo' area and call the function countTo.
- */
-function loadTasksTodo() {
-  try {
-    let todo = allTasks.filter((t) => t["area"] == "todo");
-    countTo(todo.length, 'tasks-todo');
-  } catch (error) {
-    // console.log('no tasks in "todo"');
-  }
-}
-
-/**
- * This function is used to filter the length of 'allTasks' in the 'done' area and call the function countTo.
- */
-function loadTasksDone() {
-  try {
-    let done = allTasks.filter((t) => t["area"] == "done");
-    countTo(done.length, 'tasks-done');
-  } catch (error) {
-    // console.log('no tasks in "done"');
-  }
-}
 
 /**
  * This function is used to filter the length of 'allTasks' with the 'urgent' priority and call the function countTo. It's also used to sort the urgent priority tasks and sort them from the clostest to the furthest date, by difference from today's date.
@@ -160,10 +117,10 @@ function loadTasksDone() {
 function loadTaskUpcomingDeadline() {
   let prio;
   let tasksDate = [];
-  try {
-    prio = allTasks.filter((t) => t["prio"] == "urgent");
-    countTo(prio.length, 'tasks-priority');
 
+  prio = allTasks.filter((t) => t["prio"] == "urgent");
+  countTo(prio.length, 'tasks-priority');
+  if (prio.length) {
     for (let i = 0; i < prio.length; i++) {
       const taskDate = prio[i]['date'];
       tasksDate.push(taskDate);
@@ -172,9 +129,8 @@ function loadTaskUpcomingDeadline() {
     // Sort array by difference from today's date
     let sortedDates = sortArrayByDifference(tasksDate);
     mostUrgentTask(sortedDates);
-  } catch (error) {
-    // console.log('no urgent tasks');
   }
+
 }
 
 /**

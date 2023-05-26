@@ -116,7 +116,7 @@ function addTaskBoard(area) {
     isAddTask = true;
     document.getElementById("addTask").innerHTML = addTaskHTML();
     selectArea(area);
-    slideInAnimation('addTask', 'popup-add-task-board');
+    slideAnimation('addTask', 'popup-add-task-board', 'visual-out', 'visual-in', 'slide-in-bottom', 'slide-out-bottom', 'slide-out', 'slide-in');
     document.getElementById('popup-add-task-board').classList.remove('d-none');
     addTaskCloseTopRight();
     document.getElementById('close-add-task').innerHTML = addTaskHTMLBoard();
@@ -150,7 +150,7 @@ function selectArea(area) {
  * Allows the user to scroll again.
  */
 function closeAddTaskBoard() {
-    slideOutAnimation('addTask', 'popup-add-task-board');
+    slideAnimation('addTask', 'popup-add-task-board', 'visual-in', 'visual-out', 'slide-out-bottom', 'slide-in-bottom', 'slide-in', 'slide-out');
     setTimeout(() => {
         document.getElementById('popup-add-task-board').classList.add('d-none');
     }, animationTimeout);
@@ -189,7 +189,7 @@ function doNotCloseAddTaskBoard(event) {
 function openTaskDetailsFront(taskID) {
     currentTaskID = taskID;
     document.getElementById('popup-task-details').classList.remove('d-none');
-    slideInAnimation('task-details', 'popup-task-details');
+    slideAnimation('task-details', 'popup-task-details', 'visual-out', 'visual-in', 'slide-in-bottom', 'slide-out-bottom', 'slide-out', 'slide-in');
     document.getElementById('task-details').innerHTML = renderTaskDetailsFrontHTML(currentTaskID);
     preventScrolling();
     setTitleBg(allTasks[currentTaskID], 'task-details-category');
@@ -275,7 +275,7 @@ function closeTaskDetails() {
     document.getElementById('body').style.overflow = 'auto';
     slideAssignTo = false;
     slideCategory = false;
-    slideOutAnimation('task-details', 'popup-task-details');
+    slideAnimation('task-details', 'popup-task-details', 'visual-in', 'visual-out', 'slide-out-bottom', 'slide-in-bottom', 'slide-in', 'slide-out');
     setTimeout(() => {
         document.getElementById('popup-task-details').classList.add('d-none');
     }, animationTimeout);
@@ -357,11 +357,11 @@ function getTaskDataEdit() {
  * @returns {boolean} - true if all input values are valid, false otherwise.
  */
 function taskProofSectionEdit(editTask) {
-    let title = proofTitle(editTask, 'Edit');
-    let description = proofDescription(editTask, 'Edit');
-    let assigned = proofAssigned();
-    let date = proofDate(editTask, 'Edit');
-    let prio = proofPrio(editTask, 'Edit');
+    let title = proofSections(!editTask.title, "Edit", 'Title')
+    let description = proofSections(!editTask.description, "Edit", 'Description')
+    let assigned = proofSections(selectedContacts.length === 0, "Edit", 'Assigned')
+    let date = proofSections(!editTask.date, "Edit", 'Date')
+    let prio = proofSections(!editTask.prio, "Edit", 'Prio')
     if (checkProofOfEdit(title, description, assigned, date, prio) === true) {
         return true;
     } else {
@@ -400,10 +400,8 @@ async function editTaskData(editTask) {
     allTasks[currentTaskID]['date'] = editTask['date'];
     allTasks[currentTaskID]['prio'] = editTask['prio'];
     allTasks[currentTaskID]['assignedTo'] = editTask['assignedTo'];
-
     await backend.setItem("allTasks", allTasks);
     renderBoard();
-    // console.log('task changed' + currentTaskID);
     closeTaskDetails();
 }
 

@@ -83,16 +83,6 @@ async function setCurrentUserData(newContact) {
 }
 
 
-/**
- * Closes the add new contact popup and hides it from view.
- */
-function closeAddNewContact() {
-  slideOutAnimation('addContact', 'addContactPopup');
-  setTimeout(() => {
-    let container = document.getElementById("addContactPopup");
-    container.classList.add("d-none");
-  }, 750);
-}
 
 
 /**
@@ -101,18 +91,32 @@ function closeAddNewContact() {
 function openAddNewContact() {
   let container = document.getElementById("addContactPopup");
   container.classList.remove("d-none");
-  slideInAnimation('addContact', 'addContactPopup');
+  slideAnimation('addContact', 'addContactPopup', 'visual-out', 'visual-in', 'slide-in-bottom', 'slide-out-bottom', 'slide-out', 'slide-in');
 }
 
+/**
+ * Opens the edit contact popup and loads the current contact data in it.
+ * @param {number} selectedID - The id of the selected contact.
+ */
+function openEditContact(selectedID) {
+  let popupEditContainer = document.getElementById("editContactPopup");
+  popupEditContainer.classList.remove("d-none");
+  let contact = users.find((u) => u.contactID == selectedID);
+  loadCurrentDataContactEdit(contact, selectedID)
+  slideAnimation('editContact', 'editContactPopup', 'visual-out', 'visual-in', 'slide-in-bottom', 'slide-out-bottom', 'slide-out', 'slide-in');
+}
 
 /**
- * Closes the "edit contact" popup by animating it out and then hiding it.
+ * Closes the add/edit contact popup.
+ * @param {string} contact - The type of contact ('addContact' or 'editContact').
+ * @param {string} contactPopup - The ID of the contact popup container.
  */
-function closeEditContact() {
-  slideOutAnimation('editContact', 'editContactPopup');
-  document.getElementById('deleteCurrentContact').style.backgroundColor = 'white';
+function closeAddEditContact(contact, contactPopup) {
+  slideAnimation(contact, contactPopup, 'visual-in', 'visual-out', 'slide-out-bottom', 'slide-in-bottom', 'slide-in', 'slide-out');
+  contact === 'editContact' && (document.getElementById('deleteCurrentContact').style.backgroundColor = 'white');
+
   setTimeout(() => {
-    let container = document.getElementById("editContactPopup");
+    let container = document.getElementById(contactPopup);
     container.classList.add("d-none");
   }, 750);
 }
@@ -160,7 +164,7 @@ function proofContactDataForTask(contact) {
  */
 async function createNewContact(event) {
   event.preventDefault();
-  closeAddNewContact()
+  closeAddEditContact('addContact', 'addContactPopup');
   let nameInput = tryGetName();
   let newColor = addUserColor();
   let emailInput = tryGetEmail();
@@ -222,7 +226,7 @@ async function setNewContact(newContact) {
   users.push(newContact);
   renderContacts();
   await backend.setItem(`userID${currentUser["id"]}Contacts`, users);
-  slideOutAnimation('addContact', 'addContactPopup');
+  slideAnimation('addContact', 'addContactPopup', 'visual-in', 'visual-out', 'slide-out-bottom', 'slide-in-bottom', 'slide-in', 'slide-out');
   let succesPopup = document.getElementById('createContactPopup')
   succesPopup.classList.remove('d-none');
   setTimeout(() => {
@@ -301,17 +305,7 @@ function renderSelectedContact(contact, selectedID) {
 }
 
 
-/**
- * Opens the edit contact popup and loads the current contact data in it.
- * @param {number} selectedID - The id of the selected contact.
- */
-function openEditContact(selectedID) {
-  slideInAnimation('editContact', 'editContactPopup');
-  let popupEditContainer = document.getElementById("editContactPopup");
-  popupEditContainer.classList.remove("d-none");
-  let contact = users.find((u) => u.contactID == selectedID);
-  loadCurrentDataContactEdit(contact, selectedID)
-}
+
 
 
 /**
@@ -375,8 +369,8 @@ async function saveEdit(event) {
   if (userProof && proofEditName() === true && proofEditEmail() === true && contactToEdit["phone"].length > 5 && contactToEdit["phone"].length < 16) {
     await backend.setItem(`userID${currentUser["id"]}Contacts`, users);
     loadContactsData();
-    closeEditContact();
-    slideOutAnimation('editContact', 'editContactPopup');
+    closeAddEditContact('editContact', 'editContactPopup');
+    slideAnimation('editContact', 'editContactPopup', 'visual-in', 'visual-out', 'slide-out-bottom', 'slide-in-bottom', 'slide-in', 'slide-out');
     openContact('contactContainer', idForEditContact)
   }
 }
@@ -387,13 +381,13 @@ async function deleteContact(event) {
   if (userProof && deleteContactById(idForEditContact)) {
     await backend.setItem(`userID${currentUser["id"]}Contacts`, users);
     loadContactsData();
-    closeEditContact();
-    slideOutAnimation('editContact', 'editContactPopup');
+    closeAddEditContact('editContact', 'editContactPopup');
+    slideAnimation('editContact', 'editContactPopup', 'visual-in', 'visual-out', 'slide-out-bottom', 'slide-in-bottom', 'slide-in', 'slide-out');
     document.getElementById('slideContainer').classList.add('d-none');
   }
 }
 
-function deleteContactById(id){
+function deleteContactById(id) {
   for (let i = 0; i < users.length; i++) {
     if (users[i].id === id && id !== 0) {
       users.splice(i, 1);

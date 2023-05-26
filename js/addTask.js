@@ -139,24 +139,34 @@ async function getTaskData() {
 
 
 /**
- * Validates if the title property is present in the task object. Returns true if the title is present, false otherwise.
- * @param {Object} newTask - The task object to validate.
- * @param {string} Edit - A string indicating the context in which the function is called, either "Task" for creating a new task or "Edit" for editing an existing task.
- * @returns {boolean} - True if the title property is present, false otherwise.
+ * Checks the proof of a task section.
+ * @param {object} newTask - The new task object.
+ * @returns {boolean} - Returns true if the proof of all task sections is successful, false otherwise.
  */
 function taskProofSection(newTask) {
   let data = proofTaskData(newTask);
-  let title = proofTitle(newTask, "Task");
-  let description = proofDescription(newTask, "Task");
-  let category = proofCategory(newTask, "Task");
-  let assigned = proofAssigned(newTask, "Task");
-  let date = proofDate(newTask, "Task");
-  let prio = proofPrio(newTask, "Task");
+  let title = proofSections(!newTask.title, "Task", 'Title')
+  let description = proofSections(!newTask.description, "Task", 'Description')
+  let category = proofSections(conditionProofCategory(newTask), "Task", 'Category')
+  let assigned = proofSections(selectedContacts.length === 0, "Task", 'Assigned')
+  let date = proofSections(!newTask.date, "Task", 'Date')
+  let prio = proofSections(!newTask.prio, "Task", 'Prio')
+
   let subtask = true;
   if (checkProofOf(data, title, description, category, assigned, date, prio, subtask) === true) {
     return true;
   }
   return false;
+}
+
+
+/**
+ * Checks the condition for proof of the category section.
+ * @param {object} newTask - The new task object.
+ * @returns {boolean} - Returns true if the condition for proof of the category section is met, false otherwise.
+ */
+function conditionProofCategory(newTask) {
+  return newTask.category == "select a category" || newTask.category == "" || !newTask.titleBg;
 }
 
 
@@ -192,7 +202,6 @@ function proofTaskData(newTask) {
     return false;
   }
   if (newTask.id === undefined || !newTask.area) {
-    // console.log("proof the id or area undefined");
     return false;
   }
   return true;
@@ -200,106 +209,15 @@ function proofTaskData(newTask) {
 
 
 /**
- * Validates if the title property is present in the task object. Returns true if the title is present, false otherwise.
- * @async
- * @param {Object} newTask - The task object to validate.
- * @param {boolean} Edit - A boolean indicating if the task is being edited.
- * @returns {boolean} - True if the title property is present, false otherwise.
+ * Checks the proof of a specific section.
+ * @param {boolean} condition - The condition to check for the proof of the section.
+ * @param {string} edit - The identifier for the edit action.
+ * @param {string} section - The section being checked.
+ * @returns {boolean} - Returns true if the proof of the section is successful, false otherwise.
  */
-function proofTitle(newTask, Edit) {
-  if (!newTask.title) {
-    let msgBox = document.getElementById(`msgBoxTitle${Edit}`);
-    showRequiredText(msgBox);
-    return false;
-  }
-  return true;
-}
-
-
-/**
- * Checks if a task's description has been provided.
- * @param {Object} newTask - The task object containing the description.
- * @param {string} Edit - A string indicating the context in which the function is called, either "Task" for creating a new task or "Edit" for editing an existing task.
- * @returns {boolean} Returns false if the description is missing, otherwise true.
- */
-function proofDescription(newTask, Edit) {
-  if (!newTask.description) {
-    let msgBox = document.getElementById(`msgBoxDescription${Edit}`);
-    showRequiredText(msgBox);
-    return false;
-  }
-  return true;
-}
-
-
-/**
- * Checks if a task's category has been selected and if a background color has been set for the category.
- * @param {Object} newTask - The task object containing the category and titleBg.
- * @param {string} Edit - A string indicating the context in which the function is called, either "Task" for creating a new task or "Edit" for editing an existing task.
- * @returns {boolean} Returns false if the category is missing or the titleBg is not set, otherwise true.
- */
-function proofCategory(newTask, Edit) {
-  if (newTask.category == "select a category" || newTask.category == "" || !newTask.titleBg) {
-    let msgBox = document.getElementById(`msgBoxCategory${Edit}`);
-    showRequiredText(msgBox);
-    return false;
-  }
-  return true;
-}
-
-
-/**
- * Validates if the assigned property (selectedContacts) contains at least one contact.
- * @returns {boolean} - Returns false if no contacts are selected, otherwise true.
- */
-function proofAssigned() {
-  if (selectedContacts.length === 0) {
-    let msgBox = document.getElementById("msgBoxAssignedTask");
-    showRequiredText(msgBox);
-    return false;
-  }
-  return true;
-}
-
-
-/**
- * Checks if a task's date has been selected.
- * @param {Object} newTask - The task object containing the date.
- * @param {string} Edit - A string indicating the context in which the function is called, either "Task" for creating a new task or "Edit" for editing an existing task.
- * @returns {boolean} Returns false if the date is missing, otherwise true.
- */
-function proofDate(newTask, Edit) {
-  if (!newTask.date) {
-    let msgBox = document.getElementById(`msgBoxDate${Edit}`);
-    showRequiredText(msgBox);
-    return false;
-  }
-  return true;
-}
-
-
-/**
- * Checks the priority of a task.
- * @param {string} input - An empty string, used to check if a priority value is set. If not, a default priority is assigned.
- * @returns {number} - Returns the priority value.
- */
-function proofPrio(newTask, Edit) {
-  if (!newTask.prio) {
-    let msgBox = document.getElementById(`msgBoxPrio${Edit}`);
-    showRequiredText(msgBox);
-    return false;
-  }
-  return true;
-}
-
-
-/**
- * Checks if a task's subtasks have been added.
- * @returns {boolean} Returns false if no subtasks have been added, otherwise true.
- */
-function proofSubtask() {
-  if (newSubtask.length === 0 && newCreateSubtask.length === 0) {
-    let msgBox = document.getElementById("msgBoxSubtask");
+function proofSections(condition, edit, section) {
+  if (condition) {
+    let msgBox = document.getElementById(`msgBox${section}${edit}`);
     showRequiredText(msgBox);
     return false;
   }
@@ -317,10 +235,6 @@ function showRequiredText(msgBox) {
 }
 
 
-/**
- * Removes the "required" message from the specified container if it's not empty. Otherwise, shows the container.
- * @param {string} id - The ID of the container to check.
- */
 function proofInput(id) {
   let requiredContainer = document.getElementById(id);
   if (requiredContainer.innerHTML != "") {
