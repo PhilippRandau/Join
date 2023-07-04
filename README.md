@@ -1,4 +1,8 @@
 # Join
+Join is a feature-rich project management tool that combines the power of drag and drop task management with the intuitive Kanban system, allowing users to effortlessly create, organize, and track tasks. With seamless task movement and efficient contact management, Join enhances collaboration and streamlines project workflows.
+
+
+### Some info for me
 --Mini-Backend--
 https://github.com/JunusErgin/smallest_backend_ever
 
