@@ -318,6 +318,28 @@ function checkValueOfSubtasks(task) {
 
 
 /**
+ * Deletes an existing task.
+ * @param {Event} event - The event object.
+ */
+function deleteExistingTask(event) {
+    proofEvent(event);
+    deleteTaskData();
+    selectedContacts = [];
+}
+
+
+/**
+ * Deletes the task data from the backend and updates the board.
+ */
+async function deleteTaskData() {
+    allTasks.splice(currentTaskID, 1);
+    await backend.setItem("allTasks", allTasks);
+    renderBoard();
+    closeTaskDetails();
+}
+
+
+/**
  * Edits an existing task with the data entered in the edit task form and updates it in the allTasks array.
  * @param {Event} event - The event object that triggered the function.
  */

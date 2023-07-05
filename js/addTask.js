@@ -254,5 +254,4 @@ async function setTaskData(newTask) {
   allTasks.push(newTask);
   await backend.setItem("allTasks", allTasks);
   slidePopup.classList.remove("d-none");
-
 }

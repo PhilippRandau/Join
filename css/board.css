@@ -596,12 +596,40 @@ h2 {
     box-shadow: 0px 4px 6px 0px rgb(0 0 0 / 33%);
 }
 
+.delete-Btn {
+    background: transparent;
+    color: red;
+    padding: 10px;
+    padding-left: 7px;
+    padding-right: 7px;
+    border: 2px solid red;
+    border-radius: 10px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+    font-weight: 700;
+    font-size: 16px;
+}
+
+.delete-Btn:hover {
+    transition: none;
+    background-color: red;
+    border-color: red;
+    color: white;
+    box-shadow: 0px 4px 6px 0px rgb(0 0 0 / 33%);
+}
+
 .edit-Task-Btn {
     display: flex;
-    /* padding: 40px; */
     justify-content: flex-end;
-
     width: 440px;
+}
+
+.edit-Task-Btn div{
+    display: flex;
+    gap: 20px;
 }
 
 /* Add Task Board */
@@ -691,44 +719,6 @@ h2 {
         background-color: rgba(0, 0, 0, 0);
     }
 }
-
-/* responsive */
-/* 
-@media(max-width:1500px) {
-
-    .board {
-        margin: 70px 30px 70px 70px;
-        top: 89px;
-        left: 232px;
-    }
-
-    .tasks-headlines {
-        gap: 20px;
-        margin-bottom: 25px;
-    }
-
-    .tasks-headlines div {
-        margin: unset;
-    }
-
-    .task-columns {
-        width: 230px;
-        gap: 10px;
-    }
-
-
-
-    .task-preview {
-        width: 227px;
-    }
-
-    .task-subtasks-progressbar {
-        width: 125px;
-    }
-
-
-} 
-*/
 
 @media(max-width:1500px) {
     .headline {
@@ -893,7 +883,6 @@ h2 {
 
     .task-details-edit {
         margin-top: 10px;
-        /* margin-right: 20px; */
         justify-content: space-between;
         align-items: center;
     }
@@ -905,14 +894,10 @@ h2 {
         border-radius: 10px;
         padding: 7px 10px;
         font-size: 16px;
-        /* font-weight: 700; */
-        /* margin-left: 20px; */
         border: #2A3647;
         display: flex;
         align-items: center;
         justify-content: center;
-        /* gap: 5px; */
-        /* height: fit-content; */
         font-size: 16px;
         height: 50px;
     }
@@ -924,8 +909,6 @@ h2 {
     }
 
 }
-
-
 
 @media(max-width:600px) {
     .board {
@@ -1002,7 +985,6 @@ h2 {
 
     .task-details-popup {
         width: 280px;
-        /* height: 590px; */
         margin-bottom: 120px;
     }
 
@@ -1031,7 +1013,6 @@ h2 {
     }
 
     .task-details-subtasks-shell {
-
         width: 280px;
     }
 
