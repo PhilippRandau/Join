@@ -2,7 +2,7 @@
 
 ########### CONFIG ###############
 
-$recipient = 'davide.n2@gmx.de'; //password: erdiedas123
+$recipient = 'philipp-randau@web.de'; //password: erdiedas123
 #$redirect = 'forgotPassword.html';
 
 ########### CONFIG END ###########

@@ -191,16 +191,11 @@ function checkProofOf(data, title, description, category, assigned, date, prio, 
 /**
  * Validates the task object by checking if it contains all required properties.
  * The function checks if the `newTask` object has a valid `creator` property and ensures that the `id` and `area` properties are defined. 
- * If the `creator` property of `newTask` is equal to "Guest User", an alert message is displayed stating that a guest user cannot create a task.
  * If the `id` property of `newTask` is undefined or the `area` property is falsy, the function logs an error message to the console and returns false.
  * @param {Object} newTask - The task object to validate.
  * @returns {boolean} - Returns true if the task object is valid, false otherwise.
  */
 function proofTaskData(newTask) {
-  if (newTask.creator == "Guest User") {
-    alert("The guest user can't create a task.");
-    return false;
-  }
   if (newTask.id === undefined || !newTask.area) {
     return false;
   }

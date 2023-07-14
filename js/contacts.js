@@ -99,12 +99,27 @@ function openAddNewContact() {
  * @param {number} selectedID - The id of the selected contact.
  */
 function openEditContact(selectedID) {
+  ifEditContactGuest(selectedID);
   let popupEditContainer = document.getElementById("editContactPopup");
   popupEditContainer.classList.remove("d-none");
   let contact = users.find((u) => u.contactID == selectedID);
   loadCurrentDataContactEdit(contact, selectedID)
   slideAnimation('editContact', 'editContactPopup', 'visual-out', 'visual-in', 'slide-in-bottom', 'slide-out-bottom', 'slide-out', 'slide-in');
 }
+
+
+/**
+ * Checks if the current edit contact is guest and prevent changing name, email or deleting it.
+ * @param {number} selectedID - The id of the selected contact.
+ */
+function ifEditContactGuest(selectedID){
+  if (selectedID === 0) {
+    deleteCurrentContact.style.display = 'none';
+    editName.disabled = true;
+    editEmail.disabled = true;
+  }
+}
+
 
 /**
  * Closes the add/edit contact popup.
@@ -170,12 +185,11 @@ async function createNewContact(event) {
   let emailInput = tryGetEmail();
   let nameInitials = getInitialLetters(nameInput);
   let newPassword = 'setPassword';
-  let userProof = proofCurrentUser();
   let numberInput = tryGetPhone();
   let currentContactID = users.length;
   let data = { nameInput, emailInput, newPassword, numberInput, newColor, nameInitials, currentContactID }
   let newContact = makeDataToContact(data);
-  if (userProof && proofEmail(emailInput) === true && proofName(nameInput) === true && numberInput.length > 5 && numberInput.length < 16) {
+  if (proofEmail(emailInput) === true && proofName(nameInput) === true && numberInput.length > 5 && numberInput.length < 16) {
     setNewContact(newContact);
     clearNewContactForm();
   }
@@ -330,19 +344,6 @@ function loadCurrentDataContactEdit(contact, selectedID) {
 
 
 /**
- * Verifies if the current user is a guest user and returns a corresponding value.
- * @returns {boolean} - True if the user is a guest, false otherwise.
- */
-function proofCurrentUser() {
-  if (currentUser.name == "Guest User") {
-    alert("The guest user can't Edit/Create a Contact.");
-    return false;
-  }
-  return true
-}
-
-
-/**
  * Searches for a contact with the specified ID in the users array and returns it.
  * @param {number} id - The ID of the contact to be found.
  * @returns {Object} - The contact object with the specified ID, or undefined if not found.
@@ -359,14 +360,12 @@ function findContactById(id) {
  */
 async function saveEdit(event) {
   event.preventDefault();
-  // loadContactsData();
-  let userProof = proofCurrentUser()
   let contactToEdit = findContactById(idForEditContact);
   contactToEdit["name"] = tryGetName();
   contactToEdit["email"] = tryGetEmail();
   contactToEdit["phone"] = tryGetPhone();
   contactToEdit["initialLetters"] = getInitialLetters(contactToEdit["name"]);
-  if (userProof && proofEditName() === true && proofEditEmail() === true && contactToEdit["phone"].length > 5 && contactToEdit["phone"].length < 16) {
+  if (proofEditName() === true && proofEditEmail() === true && contactToEdit["phone"].length > 5 && contactToEdit["phone"].length < 16) {
     await backend.setItem(`userID${currentUser["id"]}Contacts`, users);
     loadContactsData();
     closeAddEditContact('editContact', 'editContactPopup');
@@ -377,8 +376,7 @@ async function saveEdit(event) {
 
 async function deleteContact(event) {
   event.preventDefault();
-  let userProof = proofCurrentUser();
-  if (userProof && deleteContactById(idForEditContact)) {
+  if (deleteContactById(idForEditContact)) {
     await backend.setItem(`userID${currentUser["id"]}Contacts`, users);
     loadContactsData();
     closeAddEditContact('editContact', 'editContactPopup');
@@ -394,7 +392,6 @@ function deleteContactById(id) {
       return true;
     }
   }
-  // alert("The guest user cannot be deleted.");
   document.getElementById('deleteCurrentContact').style.backgroundColor = 'red';
   return false;
 }
