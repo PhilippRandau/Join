@@ -83,8 +83,6 @@ async function setCurrentUserData(newContact) {
 }
 
 
-
-
 /**
  * Opens the add new contact popup and shows it on the page.
  */
@@ -93,6 +91,7 @@ function openAddNewContact() {
   container.classList.remove("d-none");
   slideAnimation('addContact', 'addContactPopup', 'visual-out', 'visual-in', 'slide-in-bottom', 'slide-out-bottom', 'slide-out', 'slide-in');
 }
+
 
 /**
  * Opens the edit contact popup and loads the current contact data in it.
@@ -112,11 +111,15 @@ function openEditContact(selectedID) {
  * Checks if the current edit contact is guest and prevent changing name, email or deleting it.
  * @param {number} selectedID - The id of the selected contact.
  */
-function ifEditContactGuest(selectedID){
+function ifEditContactGuest(selectedID) {
   if (selectedID === 0) {
-    deleteCurrentContact.style.display = 'none';
+    deleteCurrentContact.style.visibility = 'hidden';
     editName.disabled = true;
     editEmail.disabled = true;
+  } else {
+    deleteCurrentContact.style.visibility = 'visible';
+    editName.disabled = false;
+    editEmail.disabled = false;
   }
 }
 
@@ -128,8 +131,6 @@ function ifEditContactGuest(selectedID){
  */
 function closeAddEditContact(contact, contactPopup) {
   slideAnimation(contact, contactPopup, 'visual-in', 'visual-out', 'slide-out-bottom', 'slide-in-bottom', 'slide-in', 'slide-out');
-  contact === 'editContact' && (document.getElementById('deleteCurrentContact').style.backgroundColor = 'white');
-
   setTimeout(() => {
     let container = document.getElementById(contactPopup);
     container.classList.add("d-none");
@@ -392,6 +393,5 @@ function deleteContactById(id) {
       return true;
     }
   }
-  document.getElementById('deleteCurrentContact').style.backgroundColor = 'red';
   return false;
 }

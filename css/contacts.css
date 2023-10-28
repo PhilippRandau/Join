@@ -270,23 +270,29 @@ input[type="number"]::-webkit-outer-spin-button {
   flex-direction: column;
 }
 
-.deleteContactBlueBtn{
-  display: flex;
-  background: white;
-  padding: 6px 10px;
-  border: 2px solid #2a3647;
+.delete-Btn {
+  background: transparent;
+  color: red;
+  padding: 10px;
+  padding-left: 7px;
+  padding-right: 7px;
+  border: 2px solid red;
   border-radius: 6px;
-  color: black;
   cursor: pointer;
-  align-items: center;
+  display: flex;
   justify-content: center;
+  align-items: center;
   width: 100px;
+  font-weight: 700;
   font-size: 20px;
 }
 
-.deleteContactBlueBtn:hover {
-  background: #29abe2;
-  border: 2px solid #29abe2 !important;
+.delete-Btn:hover {
+  transition: none;
+  background-color: red;
+  border-color: red;
+  color: white;
+  box-shadow: 0px 4px 6px 0px rgb(0 0 0 / 33%);
 }
 
 .saveContactBlueBtn {
@@ -311,6 +317,7 @@ input[type="number"]::-webkit-outer-spin-button {
 .saveContactBlueBtn:hover {
   background: #29abe2;
   border: 2px solid #29abe2 !important;
+  box-shadow: 0px 4px 6px 0px rgb(0 0 0 / 33%);
 }
 
 .contactContainerCo {
